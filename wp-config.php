@@ -1,4 +1,7 @@
 <?php
+/** Enable W3 Total Cache */
+define('WP_CACHE', true); // Added by W3 Total Cache
+
 /**
  * The base configuration for WordPress
  *
@@ -45,6 +48,8 @@ define( 'DB_USER', getenv_docker('WORDPRESS_DB_USER', 'example username') );
 
 /** MySQL database password */
 define( 'DB_PASSWORD', getenv_docker('WORDPRESS_DB_PASSWORD', 'example password') );
+
+define('FS_METHOD','direct');
 
 /**
  * Docker image fallback values above are sourced from the official WordPress installation wizard:
