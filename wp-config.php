@@ -1,4 +1,6 @@
 <?php
+
+define( 'WP_MEMORY_LIMIT', '500M' );
 /** Enable W3 Total Cache */
 define('WP_CACHE', true); // Added by W3 Total Cache
 

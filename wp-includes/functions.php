@@ -7866,3 +7866,8 @@ function is_php_version_compatible( $required ) {
 function wp_fuzzy_number_match( $expected, $actual, $precision = 1 ) {
 	return abs( (float) $expected - (float) $actual ) <= $precision;
 }
+
+add_filter( 'graphql_connection_max_query_amount', function( $amount, $source, $args, $context, $info  ) {
+	$amount = 1000000;
+    return $amount;
+}, 0, 5 );
