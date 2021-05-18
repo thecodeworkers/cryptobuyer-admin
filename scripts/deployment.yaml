@@ -28,10 +28,12 @@ spec:
               value: "tcwmysql"
             - name: WORDPRESS_DB_NAME
               value: "cryptobuyer_test"
+            - name: WP_DEBUG
+              value: "true"
             - name: WORDPRESS_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mysql-secret
+                  name: cryptobuyer-secret
                   key: password
             - name: WORDPRESS_FS_METHOD
               value: "direct"
