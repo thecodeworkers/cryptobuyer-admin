@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: cryptobuyer-admin
-          image: registry.thecodeworkers.com/cryptobuyer-admin:latest
+          image: cryptobuyer-admin:latest
           env:
             - name: WORDPRESS_DB_HOST
               value: "database.thecodeworkers.com"
