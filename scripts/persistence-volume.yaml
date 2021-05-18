@@ -1,0 +1,35 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: cryptobuyer-admin-claim
+  namespace: cryptobuyer-admin
+  labels:
+    app: cryptobuyer-admin
+
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 2.8Gi
+
+---
+
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: cryptobuyer-admin-volume
+  namespace: cryptobuyer-admin
+  labels:
+    type: local
+    app: cryptobuyer-admin
+
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: /mnt/cryptobuyer-admin/

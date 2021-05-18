@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cryptobuyer-admin
+  namespace: cryptobuyer-admin
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
+    nginx.ingress.kubernetes.io/cors-allow-headers: Authorization, origin, accept
+    nginx.ingress.kubernetes.io/cors-allow-methods: GET, OPTIONS, POST, PUT, DELETE
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+spec:
+  rules:
+    - host: cryptobuyer-admin.thecodeworkers.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: cryptobuyer-admin-service
+                port:
+                  number: 80
+  tls:
+    - hosts:
+      - cryptobuyer-admin.thecodeworkers.com
+      secretName: cryptobuyer-admin-thecodeworkers-tls

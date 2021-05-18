@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cryptobuyer-admin
+  namespace: cryptobuyer-admin
+  labels:
+    app: cryptobuyer-admin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cryptobuyer-admin
+  template:
+    metadata:
+      labels:
+        app: cryptobuyer-admin
+    spec:
+      containers:
+        - name: cryptobuyer-admin
+          image: registry.thecodeworkers.com/cryptobuyer-admin:latest
+          imagePullSecrets:
+          - name: regcred
+          env:
+            - name: WORDPRESS_DB_HOST
+              value: "database.thecodeworkers.com"
+            - name: WORDPRESS_DB_USER
+              value: "tcwmysql"
+            - name: WORDPRESS_DB_NAME
+              value: "cryptobuyer_test"
+            - name: WORDPRESS_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: password
+            - name: WORDPRESS_FS_METHOD
+              value: "direct"
+          ports:
+            - name: http-port
+              containerPort: 80
+          volumeMounts:
+            - name: cryptobuyer-admin
+              mountPath: /var/www/html
+      volumes:
+        - name: cryptobuyer-admin
+          persistentVolumeClaim:
+            claimName: cryptobuyer-admin-claim
