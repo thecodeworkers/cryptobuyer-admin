@@ -16,9 +16,10 @@ spec:
         app: cryptobuyer-admin
     spec:
       imagePullSecrets:
-       - name: regcred
+      - name: regcred
       containers:
         - name: cryptobuyer-admin
+          imagePullPolicy: Always
           image: registry.thecodeworkers.com/cryptobuyer-admin:latest
           env:
             - name: WORDPRESS_DB_HOST
