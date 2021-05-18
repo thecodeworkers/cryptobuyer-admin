@@ -15,9 +15,11 @@ spec:
       labels:
         app: cryptobuyer-admin
     spec:
+      imagePullSecrets:
+       - name: regcred
       containers:
         - name: cryptobuyer-admin
-          image: cryptobuyer-admin:latest
+          image: registry.thecodeworkers.com/cryptobuyer-admin:latest
           env:
             - name: WORDPRESS_DB_HOST
               value: "database.thecodeworkers.com"
@@ -38,8 +40,6 @@ spec:
           volumeMounts:
             - name: cryptobuyer-admin
               mountPath: /var/www/html
-      imagePullSecrets:
-        - name: regcred
       volumes:
         - name: cryptobuyer-admin
           persistentVolumeClaim:
