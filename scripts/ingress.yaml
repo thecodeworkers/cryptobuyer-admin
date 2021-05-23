@@ -13,7 +13,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: "0"
 spec:
   rules:
-    - host: cryptobuyer-admin.thecodeworkers.com
+    - host: cryptobuyer-dev-admin.thecodeworkers.com
       http:
         paths:
           - pathType: Prefix
@@ -25,5 +25,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-      - cryptobuyer-admin.thecodeworkers.com
-      secretName: cryptobuyer-admin-thecodeworkers-tls
+      - cryptobuyer-dev-admin.thecodeworkers.com
+      secretName: cryptobuyer-dev-admin-thecodeworkers-tls
